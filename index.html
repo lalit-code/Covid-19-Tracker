@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>COVID-19 Tracker (INDIA)</title>
+
+	<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+	<script
+    src="https://code.jquery.com/jquery-3.5.0.min.js"
+  	integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ="
+  	crossorigin="anonymous"></script>
+
+  	<style type="text/css">		
+  		*{
+  			margin: 0px;
+  		}
+         body{
+         	margin: 0px;
+         	background-color: #FFF0F5;
+
+         }
+
+         #head{
+         	background: url("https://media.giphy.com/media/hr9pTEMKutFR2j3nxr/giphy.gif");
+         	max-width: 100%;
+         	height: 280px;
+         	text-align: center;   
+
+         }
+
+         #head>h1{
+         	font-size: 65px;
+         	padding: 320px 50px 10px 50px;
+            font-family: Century Gothic;
+            text-shadow: 4px 4px 4px lightblue;
+
+         }
+         
+         #up{
+         	font-size: 40px;
+         	text-align: center;
+         	margin-top: 220px;
+         	font-family: arial;
+         }
+         
+
+         #box{
+         	text-align: center;
+         	margin-left:135px;
+         	margin-top: 70px;
+         }
+
+         .con{
+         	height: 270px;
+         	width: 85%;
+         	background-color: blue;
+         	margin-bottom: 75px;
+         	border-radius: 50px;
+         	font-size: 60px;
+         	padding-top: 60px;
+         	box-sizing: border-box;
+         	font-family: verdana;
+         	font-weight: bold;
+         	color: white;
+         	box-shadow:7px 7px 12px 12px #C9C9C9;
+     
+
+
+         }
+         .con:nth-child(1){
+         	background-color: #D2B48C;
+         }
+          
+         .con:nth-child(2){
+         	background-color: #00cc00;
+         }
+         .con:nth-child(3){
+         	background-color: #ff5c33;
+         }
+
+
+
+         @media only screen and (min-device-width:400px){
+          
+         #head{
+         	max-width: 100%;
+         	height: 180px;
+
+         }
+
+         #head>h1{
+         	font-size: 45px;
+         	padding: 220px 50px 10px 50px;
+            text-shadow: 4px 4px 4px lightblue;
+
+         }
+         
+         #up{
+         	font-size: 20px;
+         	margin-top: 110px;
+         }
+         
+
+         #box{
+         	margin-left:135px;
+         	margin-top: 70px;
+         	display: flex;
+         }
+
+         .con{
+         	height: 170px;
+         	width: 25%;
+         	margin-right: 75px;
+         	border-radius: 50px;
+         	font-size: 30px;
+         	padding-top: 50px;
+         	box-shadow:5px 5px 10px 10px #C9C9C9;
+     
+
+
+         }
+         }
+         
+  	</style>
+
+</head>
+<body>
+
+<div id="head">
+<h1>COVID-19 Tracker INDIA (LIVE)</h1>
+</div>
+<br>
+<div id="up"><b>Last updated on:-</b><div id="update" ></div></div>
+
+		<div id="box">
+		<div class="con" data-aos="fade-right"> TOTAL<div id="cases" style="color: black"></div></div>
+		<div class="con" data-aos="fade-left"> RECOVERED<div id="recovered" style="color: black"></div></div>
+		<div class="con" data-aos="fade-right"> DEATH<div id="death" style="color: black"></div></div>
+		</div>
+
+
+
+
+
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script type="text/javascript">
+	AOS.init({
+          once: true,
+          offset: 200,
+        });
+</script>
+
+<script type="text/javascript">
+
+	$.ajax({
+	url : "https://covid19-api.org/api/status",
+	type : "GET",
+	dataType : "JSON",
+	success : function(data){
+          $('#cases').text(data[2].cases);
+          $('#recovered').text(data[2].recovered);
+          $('#death').text(data[2].deaths);
+          $('#update').text(data[2].last_update);
+
+	}
+		});
+</script>
+
+</body>
+</html>
